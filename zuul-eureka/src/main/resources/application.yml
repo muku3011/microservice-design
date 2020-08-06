@@ -1,6 +1,7 @@
 info:
-  app:
-    name: zuul-eureka
+  name: ${project.name}
+  version: ${project.version}
+  description: ${project.description}
 
 spring:
   application:

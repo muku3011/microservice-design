@@ -1,7 +1,7 @@
 info:
-  app:
-    name: zuul-gateway
-    version: v1.0
+  name: ${project.name}
+  version: ${project.version}
+  description: ${project.description}
 
 spring:
   application:
@@ -59,16 +59,12 @@ zuul:
     max-total-connections: 100
     max-per-route-connections: 100
   routes:
-    microservice:
+    zuul-service:
       path: /api/**
       sensitive-headers: null
-      service-id: microservice
+      service-id: zuul-service
       strip-prefix: false
 #      ssl-hostname-validation-enabled: false
-
-#microservice:
-#  ribbon:
-#    listOfServers: https://localhost:3000/
 
 endpoints:
   actuator:

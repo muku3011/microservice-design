@@ -9,9 +9,9 @@
     <packaging>pom</packaging>
 
     <modules>
-        <module>zuul-gateway</module>
-        <module>zuul-microservice</module>
         <module>zuul-eureka</module>
+        <module>zuul-service</module>
+        <module>zuul-gateway</module>
     </modules>
 
     <properties>

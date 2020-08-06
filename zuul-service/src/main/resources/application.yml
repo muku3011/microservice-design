@@ -1,11 +1,11 @@
 info:
-  app:
-    name: microservice
-    version: v1.0
+  name: ${project.name}
+  version: ${project.version}
+  description: ${project.description}
 
 spring:
   application:
-    name: microservice
+    name: zuul-service
 
 logging:
   level:
