@@ -1,0 +1,86 @@
+info:
+  app:
+    name: zuul-gateway
+    version: v1.0
+
+spring:
+  application:
+    name: zuul-gateway
+
+logging:
+  level:
+    root: INFO
+
+server:
+  port: 8000
+#  ssl:
+#    enabled: true
+#    client-auth: need
+#    key-store: classpath:certs//keystore.p12
+#    key-store-password: svn4ever
+#    key-store-type: PKCS12
+
+eureka:
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    registry-fetch-interval-seconds: 5
+    serviceUrl:
+      defaultZone: ${EUREKA_URI:http://localhost:8761/eureka}
+  instance:
+    preferIpAddress: true
+
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          strategy: THREAD
+          thread:
+            timeoutInMilliseconds: 60000
+
+ribbon:
+#  OkToRetryOnAllOperations: true
+#  IsSecure: true
+#  ReadTimeout: 5000000
+#  ConnectTimeout: 5000000
+#  MaxAutoRetries: 3
+#  MaxAutoRetriesNextServer: 3
+#  CustomSSLSocketFactoryClassName: com.netflix.http4.ssl.AcceptAllSocketFactory
+#  IsHostnameValidationRequired: false
+#  TrustStore: classpath:certs//keystore.p12
+#  TrustStorePassword : svn4ever
+  eureka:
+    enabled: true
+
+zuul:
+  ignored-services: '*'
+  host:
+    max-total-connections: 100
+    max-per-route-connections: 100
+  routes:
+    microservice:
+      path: /api/**
+      sensitive-headers: null
+      service-id: microservice
+      strip-prefix: false
+#      ssl-hostname-validation-enabled: false
+
+#microservice:
+#  ribbon:
+#    listOfServers: https://localhost:3000/
+
+endpoints:
+  actuator:
+    enabled: true
+    sensitive: true
+  health:
+    enabled: true
+    sensitive: true
+  metrics:
+    enabled: true
+    id: metrics
+    sensitive: true
+management:
+  security:
+    enabled: false

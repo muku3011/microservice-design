@@ -1,0 +1,29 @@
+info:
+  app:
+    name: microservice
+    version: v1.0
+
+spring:
+  application:
+    name: microservice
+
+logging:
+  level:
+    root: INFO
+
+server:
+  port: 0
+#  ssl:
+#    enabled: true
+#    client-auth: need
+#    key-store: classpath:certs//keystore.p12
+#    key-store-password: svn4ever
+#    key-store-type: PKCS12
+
+eureka:
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    registry-fetch-interval-seconds: 5
+    serviceUrl:
+      defaultZone: ${EUREKA_URI:http://localhost:8761/eureka}
