@@ -13,6 +13,8 @@ public class Controller {
 	@GetMapping
 	public ResponseEntity<String> insertStudentDetails() {
 
+		System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
+
 		return new ResponseEntity<>("{\"Demo\": \"Completed\"}", HttpStatus.OK);
 	}
 }
