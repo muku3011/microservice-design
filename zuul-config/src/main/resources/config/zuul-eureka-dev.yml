@@ -1,22 +1,12 @@
+# Application properties for Eureka server
+
 server:
   port: 8761
 
 eureka:
-  server:
-    wait-time-in-ms-when-sync-empty: 10
-    enable-self-preservation: true
-    eviction-interval-timer-in-ms: 1000
-    response-cache-update-interval-ms: 1000
-    evictionIntervalTimerInMs: 1000
   client:
-    registryFetchIntervalSeconds: 5
     register-with-eureka: false
     fetch-registry: false
     serviceUrl:
       defaultZone: ${EUREKA_URI:http://localhost:8761/eureka}
-  instance:
-    leaseRenewalIntervalInSeconds: 10
 
-management:
-  security:
-    enabled: false

@@ -1,3 +1,5 @@
+# Application properties for Gateway server
+
 server:
   port: 8000
 
@@ -5,15 +7,14 @@ eureka:
   client:
     registerWithEureka: false
     fetchRegistry: true
-    registry-fetch-interval-seconds: 10
+    registry-fetch-interval-seconds: 5
     serviceUrl:
       defaultZone: ${EUREKA_URI:http://localhost:8761/eureka}
-    lease:
-      duration: 5
   instance:
-    preferIpAddress: true
-    leaseRenewalIntervalInSeconds: 5
-    leaseExpirationDurationInSeconds: 2
+    hostname: localhost
+    prefer-ip-address: true
+    lease-renewal-interval-in-seconds: 10
+    lease-expiration-duration-in-seconds: 20
 
 hystrix:
   command:
@@ -26,11 +27,9 @@ hystrix:
 
 zuul-service:
   ribbon:
-    ReadTimeout: 5000
-    ConnectTimeout: 3000
+    MaxAutoRetries: 3
+    MaxAutoRetriesNextServer: 1
     OkToRetryOnAllOperations: true
-    MaxAutoRetriesNextServer: 2
-    MaxAutoRetries: 2
 
 ribbon:
   eureka:
@@ -50,17 +49,3 @@ zuul:
       strip-prefix: false
       ssl-hostname-validation-enabled: false
 
-endpoints:
-  actuator:
-    enabled: true
-    sensitive: true
-  health:
-    enabled: true
-    sensitive: true
-  metrics:
-    enabled: true
-    id: metrics
-    sensitive: true
-management:
-  security:
-    enabled: false
