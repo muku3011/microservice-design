@@ -1,24 +1,5 @@
-info:
-  name: ${project.name}
-  version: ${project.version}
-  description: ${project.description}
-
-spring:
-  application:
-    name: zuul-gateway
-
-logging:
-  level:
-    root: DEBUG
-
 server:
   port: 8000
-#  ssl:
-#    enabled: true
-#    client-auth: need
-#    key-store: classpath:certs//keystore.p12
-#    key-store-password: svn4ever
-#    key-store-type: PKCS12
 
 eureka:
   client:
@@ -27,9 +8,12 @@ eureka:
     registry-fetch-interval-seconds: 10
     serviceUrl:
       defaultZone: ${EUREKA_URI:http://localhost:8761/eureka}
+    lease:
+      duration: 5
   instance:
     preferIpAddress: true
-    lease-renewal-interval-in-seconds: 10
+    leaseRenewalIntervalInSeconds: 5
+    leaseExpirationDurationInSeconds: 2
 
 hystrix:
   command:
@@ -49,16 +33,6 @@ zuul-service:
     MaxAutoRetries: 2
 
 ribbon:
-#  OkToRetryOnAllOperations: true
-#  IsSecure: true
-#  ReadTimeout: 5000000
-#  ConnectTimeout: 5000000
-#  MaxAutoRetries: 3
-#  MaxAutoRetriesNextServer: 3
-#  CustomSSLSocketFactoryClassName: com.netflix.http4.ssl.AcceptAllSocketFactory
-#  IsHostnameValidationRequired: false
-#  TrustStore: classpath:certs//keystore.p12
-#  TrustStorePassword : svn4ever
   eureka:
     enabled: true
 
@@ -74,7 +48,7 @@ zuul:
       sensitive-headers: null
       service-id: zuul-service
       strip-prefix: false
-#      ssl-hostname-validation-enabled: false
+      ssl-hostname-validation-enabled: false
 
 endpoints:
   actuator:

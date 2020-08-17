@@ -6,10 +6,10 @@ import org.springframework.cloud.netflix.eureka.server.EnableEurekaServer;
 
 @SpringBootApplication
 @EnableEurekaServer // This is the only annotation we need for this to become a Server
-public class Eureka {
+public class EurekaServerApp {
 
     public static void main(String[] args) {
-        SpringApplication.run(Eureka.class, args);
+        SpringApplication.run(EurekaServerApp.class, args);
     }
 
 }

@@ -1,0 +1,5 @@
+# Common properties for all servers: Place common properties in this file to remove duplicity and easy management from one place
+
+logging:
+  level:
+    root: INFO

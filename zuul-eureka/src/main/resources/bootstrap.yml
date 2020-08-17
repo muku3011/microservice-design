@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: zuul-eureka
+
+  profiles:
+    active: dev
+
+  cloud:
+    config:
+      uri: ${CONFIG_SERVER_URL:http://localhost:8888}

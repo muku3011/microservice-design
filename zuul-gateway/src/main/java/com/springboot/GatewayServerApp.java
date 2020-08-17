@@ -10,10 +10,10 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 @EnableZuulProxy
 @EnableEurekaClient
 @EnableFeignClients
-public class Gateway {
+public class GatewayServerApp {
 
 	public static void main(String[] args) {
-		SpringApplication.run(Gateway.class, args);
+		SpringApplication.run(GatewayServerApp.class, args);
 	}
 
 }

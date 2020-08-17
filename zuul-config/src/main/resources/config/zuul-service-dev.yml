@@ -1,16 +1,3 @@
-info:
-  name: ${project.name}
-  version: ${project.version}
-  description: ${project.description}
-
-spring:
-  application:
-    name: zuul-service
-
-logging:
-  level:
-    root: INFO
-
 server:
   port: 0
 
@@ -19,6 +6,13 @@ eureka:
     registerWithEureka: true
     serviceUrl:
       defaultZone: ${EUREKA_URI:http://localhost:8761/eureka}
+    lease:
+      duration: 5
   instance:
-    lease-renewal-interval-in-seconds: 10
+    leaseRenewalIntervalInSeconds: 5
+    leaseExpirationDurationInSeconds: 20
     instanceId: ${spring.application.name}:${spring.application.instance_id:${random.value}}
+
+management:
+  security:
+    enabled: false
