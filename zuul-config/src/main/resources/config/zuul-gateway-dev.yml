@@ -49,3 +49,15 @@ zuul:
       strip-prefix: false
       ssl-hostname-validation-enabled: false
 
+spring:
+  boot:
+    admin:
+      client:
+        url: 'http://localhost:8090'
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+

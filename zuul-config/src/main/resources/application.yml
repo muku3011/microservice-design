@@ -15,3 +15,14 @@ spring:
       server:
         native:
           searchLocations: classpath:/config
+
+  boot:
+    admin:
+      client:
+        url: 'http://localhost:8090'
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
