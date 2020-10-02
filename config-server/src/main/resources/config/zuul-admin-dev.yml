@@ -1,0 +1,12 @@
+# Application properties for Admin server
+
+server:
+  port: 8090
+
+spring:
+  boot:
+    admin:
+      ui:
+        title: Admin-Config-Discovery-Gateway
+        brand: Admin-Config-Discovery-Gateway Example
+

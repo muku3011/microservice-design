@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: admin-server
+
+  profiles:
+    active: dev
+
+  cloud:
+    config:
+      uri: ${CONFIG_SERVER_URL:http://localhost:8888}
