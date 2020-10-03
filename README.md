@@ -16,3 +16,6 @@ https://docs.spring.io/spring-boot/docs/current/reference/html/production-ready-
 You can choose to manage and monitor your application by using **HTTP endpoints** or with **JMX**.
 **Auditing, health, and metrics gathering** can also be automatically applied to your application.
 
+#### Configuration file location:
+CONFIG_FILE_LOCATION=C:/Users/muku3/OneDrive/Desktop/config
+

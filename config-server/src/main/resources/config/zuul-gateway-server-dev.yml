@@ -18,14 +18,14 @@ eureka:
 
 hystrix:
   command:
-    zuul-service:
+    microservice:
       execution:
         isolation:
           strategy: THREAD
           thread:
             timeoutInMilliseconds: 100000
 
-zuul-service:
+microservice:
   ribbon:
     MaxAutoRetries: 3
     MaxAutoRetriesNextServer: 1
@@ -42,10 +42,10 @@ zuul:
     max-total-connections: 100
     max-per-route-connections: 100
   routes:
-    zuul-service:
+    microservice:
       path: /api/**
       sensitive-headers: null
-      service-id: zuul-service
+      service-id: microservice
       strip-prefix: false
       ssl-hostname-validation-enabled: false
 

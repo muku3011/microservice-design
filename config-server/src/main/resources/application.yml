@@ -14,7 +14,7 @@ spring:
     config:
       server:
         native:
-          searchLocations: classpath:/config
+          searchLocations: ${CONFIG_FILE_LOCATION:classpath:/config}
 
   boot:
     admin:
