@@ -16,8 +16,8 @@ eureka:
     lease-expiration-duration-in-seconds: 20
     instanceId: ${spring.application.name}:${spring.application.instance_id:${random.value}}
 
-config:
-  test: Changed :)
+dynamic-property:
+  name: Mukesh
 
 spring:
   boot:

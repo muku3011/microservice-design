@@ -43,7 +43,7 @@ zuul:
     max-per-route-connections: 100
   routes:
     microservice:
-      path: /api/**
+      path: /**
       sensitive-headers: null
       service-id: microservice
       strip-prefix: false

@@ -15,8 +15,13 @@ public class AppController {
         this.appService = appService;
     }
 
-    @GetMapping("/config/test")
-    public String configTest()  {
-        return appService.getValue();
+    @GetMapping("/dynamic")
+    public String getDynamicConfig()  {
+        return appService.getName();
+    }
+
+    @GetMapping("/ping")
+    public String doPing()  {
+        return "-------------- Hello World !!! --------------";
     }
 }

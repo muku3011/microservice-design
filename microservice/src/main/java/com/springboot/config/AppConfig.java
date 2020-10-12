@@ -6,16 +6,16 @@ import org.springframework.context.annotation.Configuration;
 
 @RefreshScope
 @Configuration
-@ConfigurationProperties(prefix = "test")
+@ConfigurationProperties(prefix = "dynamic-property")
 public class AppConfig {
 
-    private String value;
+    private String name;
 
-    public String getValue() {
-        return value;
+    public String getName() {
+        return name;
     }
 
-    public void setValue(String value) {
-        this.value = value;
+    public void setName(String name) {
+        this.name = name;
     }
 }

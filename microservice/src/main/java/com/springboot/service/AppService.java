@@ -12,7 +12,7 @@ public class AppService {
         this.appConfig = appConfig;
     }
 
-    public String getValue() {
-        return appConfig.getValue();
+    public String getName() {
+        return appConfig.getName();
     }
 }

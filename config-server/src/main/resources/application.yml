@@ -14,7 +14,8 @@ spring:
     config:
       server:
         native:
-          searchLocations: ${CONFIG_FILE_LOCATION:classpath:/config}
+          searchLocations: ${CONFIG_FILE_LOCATION:[classpath:/, classpath:/config, classpath:/config/{application}, classpath:/config/{application}/{profile}]}
+          # Set environment variable: CONFIG_FILE_LOCATION=C:/Users/muku3/projects/microservice-design/config/{application}
 
   boot:
     admin:
