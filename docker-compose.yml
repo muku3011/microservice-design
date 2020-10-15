@@ -1,0 +1,118 @@
+version: '3.8'
+
+services:
+
+  config:
+    build:
+      context: config-server
+      dockerfile: dockerfile
+    image: config-server:1.0.0-SNAPSHOT
+    container_name: config
+    ports:
+      - 8888:8888
+    volumes:
+      - "./config:/usr/local/bin/config"
+    environment:
+      CONFIG_FILE_LOCATION: "/usr/local/bin/config/{application}"
+      ADMIN_SERVER_URL: http://admin:8090
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://config:8888" ]
+      interval: 10s
+      timeout: 10s
+      retries: 10
+    networks:
+      - microservice
+
+  admin:
+    build:
+      context: admin-server
+      dockerfile: dockerfile
+    image: admin-server:1.0.0-SNAPSHOT
+    container_name: admin
+    ports:
+      - 8090:8090
+    environment:
+      CONFIG_SERVER_URL: http://config:8888
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://admin:8090/health" ]
+      interval: 10s
+      timeout: 10s
+      retries: 10
+    depends_on:
+      - config
+    restart: on-failure
+    links:
+      - config
+    networks:
+      - microservice
+
+  discovery:
+    build:
+      context: eureka-discovery-server
+      dockerfile: dockerfile
+    image: eureka-discovery-server:1.0.0-SNAPSHOT
+    container_name: discovery
+    ports:
+      - 8761:8761
+    environment:
+      CONFIG_SERVER_URL: http://config:8888
+      EUREKA_URI: http://discovery:8761/eureka
+      ADMIN_SERVER_URL: http://admin:8090
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://config:8888" ]
+      interval: 10s
+      timeout: 10s
+      retries: 10
+    depends_on:
+      - config
+    restart: on-failure
+    links:
+      - config
+    networks:
+      - microservice
+
+  gateway:
+    build:
+      context: zuul-gateway-server
+      dockerfile: dockerfile
+    image: zuul-gateway-server:1.0.0-SNAPSHOT
+    container_name: gateway
+    ports:
+      - 8000:8000
+    environment:
+      CONFIG_SERVER_URL: http://config:8888
+      EUREKA_URI: http://discovery:8761/eureka
+      ADMIN_SERVER_URL: http://admin:8090
+    depends_on:
+      - config
+    restart: on-failure
+    links:
+      - config
+    networks:
+      - microservice
+
+  microservice:
+    build:
+      context: microservice
+      dockerfile: dockerfile
+    image: microservice:1.0.0-SNAPSHOT
+    environment:
+      CONFIG_SERVER_URL: http://config:8888
+      EUREKA_URI: http://discovery:8761/eureka
+      ADMIN_SERVER_URL: http://admin:8090
+    depends_on:
+      - config
+    restart: on-failure
+    links:
+      - config
+    networks:
+      - microservice
+    deploy:
+      replicas: 2
+      update_config:
+        parallelism: 2
+        delay: 10s
+        order: stop-first
+
+networks:
+  microservice:

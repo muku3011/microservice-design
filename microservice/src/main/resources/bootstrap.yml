@@ -8,4 +8,5 @@ spring:
   cloud:
     config:
       uri: ${CONFIG_SERVER_URL:http://localhost:8888}
+      fail-fast: true
       enabled: true # Enable/Disable picking configuration from SpringCloudConfigServer, local application-dev.yml will be used when disabled i.e., enabled: false

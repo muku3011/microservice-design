@@ -20,7 +20,7 @@ spring:
   boot:
     admin:
       client:
-        url: http://localhost:8090
+        url: ${ADMIN_SERVER_URL:http://localhost:8090}
 
 management:
   endpoints:
