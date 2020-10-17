@@ -4,8 +4,8 @@ services:
 
   config:
     build:
-      context: config-server
-      dockerfile: dockerfile
+      context: config-server        
+      dockerfile: ../dockerfile     
     image: config-server:1.0.0-SNAPSHOT
     container_name: config
     ports:
@@ -25,8 +25,8 @@ services:
 
   admin:
     build:
-      context: admin-server
-      dockerfile: dockerfile
+      context: admin-server           
+      dockerfile: ../dockerfile       
     image: admin-server:1.0.0-SNAPSHOT
     container_name: admin
     ports:
@@ -48,8 +48,8 @@ services:
 
   discovery:
     build:
-      context: eureka-discovery-server
-      dockerfile: dockerfile
+      context: eureka-discovery-server  
+      dockerfile: ../dockerfile         
     image: eureka-discovery-server:1.0.0-SNAPSHOT
     container_name: discovery
     ports:
@@ -73,8 +73,8 @@ services:
 
   gateway:
     build:
-      context: zuul-gateway-server
-      dockerfile: dockerfile
+      context: zuul-gateway-server      
+      dockerfile: ../dockerfile         
     image: zuul-gateway-server:1.0.0-SNAPSHOT
     container_name: gateway
     ports:
@@ -93,8 +93,8 @@ services:
 
   microservice:
     build:
-      context: microservice
-      dockerfile: dockerfile
+      context: microservice             
+      dockerfile: ../dockerfile         
     image: microservice:1.0.0-SNAPSHOT
     environment:
       CONFIG_SERVER_URL: http://config:8888
@@ -109,10 +109,6 @@ services:
       - microservice
     deploy:
       replicas: 2
-      update_config:
-        parallelism: 2
-        delay: 10s
-        order: stop-first
 
 networks:
   microservice:
